@@ -33,4 +33,4 @@ main:                       @ main(){
         mov r1, r1          @   value of r1
         svc SVC_PrInt       @   print int
 
-        svc SVC_PrInt       @   Exit}
+        mov pc, lr          @   return;}

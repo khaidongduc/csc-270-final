@@ -36,5 +36,4 @@ main:                       @ main(){
         ldr r4, [r2]        @   tmp2 = *j
         str r3, [r2]        @   *i = tmp2
         str r4, [r1]        @   *j = tmp1
-        
         svc SVC_Exit        @}
