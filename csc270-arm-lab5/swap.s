@@ -1,4 +1,4 @@
-@ sum.s 
+@ swap.s 
 @ Elementary program to add three numbers and store and print the sum.
 @ Author: Khai Dong {dongk@union.edu} - March 03 2024
 @ Register uses
@@ -36,4 +36,4 @@ main:                       @ main(){
         ldr r4, [r2]        @   tmp2 = *j
         str r3, [r2]        @   *i = tmp2
         str r4, [r1]        @   *j = tmp1
-        svc SVC_Exit        @}
+        mov pc, lr        @}
