@@ -1,6 +1,6 @@
-@ sum.s 
+@ sum2.s 
 @ Elementary program to add three numbers and store and print the sum.
-@ Author: Khai Dong {dongk@union.edu} - March 03 2024
+@ Author: Khai Dong {dongk@union.edu} - March 03 2024 (edited)
 @ Register uses
 @   r0: stored the loaded value
 @   r1: store the sum accumulation
@@ -11,9 +11,9 @@
 .equ Stdout, 1              @ stdout code
 
         .data               @ Start of data section
-num1:   .word       17      @ 3 integers value
-num2:   .word       -35
-num3:   .word       276
+num1:   .word       12      @ 3 integers value
+num2:   .word       25
+num3:   .word       -26
 
 .section .text
 .global main
@@ -33,4 +33,4 @@ main:                       @ main(){
         mov r1, r1          @   value of r1
         svc SVC_PrInt       @   print int
 
-        svc SVC_Exit        @   Exit}
+        svc SVC_PrInt       @   Exit}
