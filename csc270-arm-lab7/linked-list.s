@@ -73,13 +73,16 @@ done:   pop {lr}
 
 @ r0: points to the first free node in the heap
 mknodes:add r4, r0, r1       @ t0 starts by pointing to the last
-        sub r4, r4, r2       @   node-sized block in the heap
-        mov r0, r4          @ set output r0 to point to that first node
+        sub r4, r4, r2       @ node-sized block in the heap
+        mov r9, r4           @ set output r9 to point to that first node
 mkloop: sub r5, r4, r2       @ t1 points to previous node-sized block
-        sw  r5, NEXT(r4)     @ link the t0->node to point to t1 node
-        move r4, r5          @ back up t0 by one node
-        bne r4, r0, mkloop   @ repeat if not at heap-start
-        sw NIL, NEXT(r5)     @ ground node (first block in heap)
+        str r5, [r4, #NEXT]  @ link the t0->node to point to t1 node
+        mov r4, r5           @ back up t0 by one node
+        cmp r4, r0
+        bne mkloop           @ repeat if not at heap-start
+        mov r8, #NIL
+        str r8, [r5, #NEXT]  @ ground node (first block in heap)
+        mov r0, r9           @ store r9 into r0 to return
         mov pc, lr           @ return
 
 @ Removes a node from free (passed in via r0), returning a pointer to the node in r0,
