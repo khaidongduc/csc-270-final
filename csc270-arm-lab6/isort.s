@@ -11,7 +11,7 @@
                 .data
 array:          .word -96, 9, -72, 96, -24, 18, -71, -18, 83, -50, 9, 54, -23, -67, -2, 6, -32, -97, -46, 11
 endarr:
-space:          .ascii " \0"
+spce:           .ascii " \0"
 endline:        .ascii "\n\0"
 before_msg:     .ascii "Array before sorting: \0"
 after_msg:      .ascii "Array after sorting: \0"
@@ -93,7 +93,7 @@ iprint: cmp r4, r5
         ldr r1, [r4]       @ get next array element into r1 for syscall
         svc SVC_PrInt             
 
-        ldr r1, =space
+        ldr r1, =spce
         svc SWI_PrStr      @ print space
 
         add r4, r4, #4    @ point to next word
