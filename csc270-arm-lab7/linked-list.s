@@ -45,11 +45,7 @@ main:   push {lr}
 @@@   When the insertion is done, store the list pointer in the list variable
 @@@   and then call a subroutine to traverse the list and print its contents
 @@@   REMOVE these comment lines before turning in the program.
-
-	@initially our linked list will be empty (nil)
-	@lw, r0, input
-	@li, r1, nil
-	@move r2, $v0  @presuming $v0 contains a pointer to free after mknodes is called
+@       initially our linked list will be empty (nil)
 
 done:   pop {lr}
         mov pc, lr
