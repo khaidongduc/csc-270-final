@@ -4,7 +4,7 @@
 
 .equ SVC_Exit, 0x11         @ kill code
 .equ SVC_PrInt, 0x6B        @ print int code
-.equ SWI_PrStr, 0x69        @ Write a null-ending string 
+.equ SVC_PrStr, 0x69        @ Write a null-ending string 
 
 .equ Stdout, 1              @ stdout code
 
@@ -21,7 +21,7 @@ after_msg:      .ascii "Array after sorting: \0"
 
 main:   mov r0, #Stdout       @ print start message
         ldr r1, =before_msg           
-        svc SWI_PrStr         @ system call code for print_str
+        svc SVC_PrStr         @ system call code for print_str
 
         ldr r0, =array        @ r0 points into array
         ldr r2, =endarr       @ r1 points to array end
@@ -38,7 +38,7 @@ main:   mov r0, #Stdout       @ print start message
 
         mov r0, #Stdout       @ print end message
         ldr r1, =after_msg           
-        svc SWI_PrStr         @ system call code for print_str 
+        svc SVC_PrStr         @ system call code for print_str 
 
         pop {r0, r1}
         bl print_arr
@@ -94,12 +94,12 @@ iprint: cmp r4, r5
         svc SVC_PrInt             
 
         ldr r1, =spce
-        svc SWI_PrStr      @ print space
+        svc SVC_PrStr      @ print space
 
         add r4, r4, #4    @ point to next word
         b iprint           @     and do it again
 
 done:   ldr r1, =endline   @ string address to print
-        svc SWI_PrStr      @ print the string
+        svc SVC_PrStr      @ print the string
         
         mov pc, lr
